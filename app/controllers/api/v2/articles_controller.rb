@@ -4,7 +4,11 @@ class Api::V2::ArticlesController < ApplicationController
 
   # GET /articles
   def index
+    # Show article for a specific user
     @articles = current_api_user.article.all
+
+    # Show all articles
+    #@articles = Article.all
 
     render json: @articles
   end
@@ -16,9 +20,8 @@ class Api::V2::ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = current_api_user.article.new(article_params)
+    @article = current_api_user.articles.new(article_params)
 
-    # The api_article_url was added because I added the api on the address
     if @article.save
       render json: @article, status: :created, location: api_article_url(@article)
     else
@@ -43,7 +46,7 @@ class Api::V2::ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = current_api_user.article.find(params[:id])
+      @article = current_api_user.articles.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

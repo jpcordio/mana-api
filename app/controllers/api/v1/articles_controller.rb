@@ -1,9 +1,10 @@
 class Api::V1::ArticlesController < ApplicationController
+  before_action :authenticate_api_user!, except: [:index]
   before_action :set_article, only: [:show, :update, :destroy]
 
   # GET /articles
   def index
-    @articles = Article.first
+    @articles = current_api_user.articles.all
 
     render json: @articles
   end
@@ -15,7 +16,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.new(article_params)
+    @article = current_api_user.articles.new(article_params)
 
     # The api_article_url was added because I added the api on the address
     if @article.save
@@ -42,7 +43,7 @@ class Api::V1::ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = current_api_user.articles.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
