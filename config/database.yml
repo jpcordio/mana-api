@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: jpcordio
+  password: Game2log.
+
+development:
+  <<: *default
+  database: mana_api_development
+
+test:
+  <<: *default
+  database: mana_api_test
+
+production:
+  <<: *default
+  database: mana_api_production
+  username: mana_api
+  password: <%= ENV['MANA_API_DATABASE_PASSWORD'] %>
