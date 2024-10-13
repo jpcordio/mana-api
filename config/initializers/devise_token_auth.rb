@@ -64,20 +64,20 @@ DeviseTokenAuth.setup do |config|
   # send email, set it to true. (This is a setting for compatibility)
   config.send_confirmation_email = true
 
-  # # Confirm account - define route
-  # config.default_confirm_success_url = if Rails.env.production?
-  #   'https://mana-api-92b61d2011eb.herokuapp.com/api/login'
-  # else
-  #   'http://localhost:4200/login'
-  # end
+  # Confirm account - define route
+  config.default_confirm_success_url = if Rails.env.production?
+    'https://localhost:4200/login' # URL for the frontend
+  else
+    'http://localhost:4200/login'
+  end
 
-  # # redirect after successful apssword reset
-  # config.default_password_reset_url = if Rails.env.production?
-  #   'https://mana-api-92b61d2011eb.herokuapp.com/api/login'
-  # else
-  #   'http://localhost:4200/reset-password'
-  # end
+  # redirect after successful apssword reset
+  config.default_password_reset_url = if Rails.env.production?
+    'https://localhost:4200/reset-password' # URL for the frontend
+  else
+    'http://localhost:4200/reset-password'
+  end
 
-  # # after password change, all otherpages will need the login again
-  # config.remove_tokens_after_password_reset = true
+  # after password change, all otherpages will need the login again
+  config.remove_tokens_after_password_reset = true
 end
