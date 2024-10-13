@@ -4,7 +4,14 @@ class Api::V1::ArticlesController < ApplicationController
 
   # GET /articles
   def index
+    # Show article for a specific user
     @articles = current_api_user.articles.all
+
+    # Show article for all user, for testing enable/disable boxes of the header on Insomia
+    #@articles = current_api_user.article.all
+
+    # Show all articles
+    #@articles = Article.all
 
     render json: @articles
   end
@@ -18,7 +25,6 @@ class Api::V1::ArticlesController < ApplicationController
   def create
     @article = current_api_user.articles.new(article_params)
 
-    # The api_article_url was added because I added the api on the address
     if @article.save
       render json: @article, status: :created, location: api_article_url(@article)
     else
