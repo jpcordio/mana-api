@@ -64,16 +64,16 @@ DeviseTokenAuth.setup do |config|
   # send email, set it to true. (This is a setting for compatibility)
   config.send_confirmation_email = true
 
-  # Confirm account - define route
+  # Confirm account - define route # URL for the frontend
   config.default_confirm_success_url = if Rails.env.production?
-    'https://localhost:4200/login' # URL for the frontend
+    'https://localhost:4200/login'
   else
     'http://localhost:4200/login'
   end
 
-  # redirect after successful apssword reset
+  # redirect after successful apssword reset # URL for the frontend
   config.default_password_reset_url = if Rails.env.production?
-    'https://localhost:4200/reset-password' # URL for the frontend
+    'https://localhost:4200/reset-password'
   else
     'http://localhost:4200/reset-password'
   end
