@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class Api::V2::ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
 
   # GET /articles
@@ -17,8 +17,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
+    # The api_article_url was added because I added the api on the address
     if @article.save
-      render json: @article, status: :created, location: @article
+      render json: @article, status: :created, location: api_article_url(@article)
     else
       render json: @article.errors, status: :unprocessable_entity
     end
@@ -46,6 +47,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:titlle, :body, :image)
+      params.require(:article).permit(:title, :body, :image)
     end
 end
