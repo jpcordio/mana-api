@@ -1,6 +1,6 @@
 class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.1]
   def change
-    
+
     create_table(:users) do |t|
       ## Required
       t.string :provider, :null => false, :default => "email"
@@ -23,6 +23,13 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.1]
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
 
+      ## Trackable
+      t.integer  :sign_in_count, default: 0, null: false
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.inet :current_sign_in_ip
+      t.inet :last_sign_in_ip
+
       ## Lockable
       # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
@@ -32,7 +39,9 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :nickname
       t.string :image
-      t.string :email
+      t.string :email, null: false, default: ''
+      t.boolean :role, default: false # False for Customers, True for business
+      t.boolean :admin, default: false
 
       ## Tokens
       t.json :tokens
