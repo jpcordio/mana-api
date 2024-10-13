@@ -5,7 +5,7 @@ DeviseTokenAuth.setup do |config|
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
   # each request.
-  # config.change_headers_on_each_request = true
+  config.change_headers_on_each_request = false
 
   # By default, users will need to re-authenticate after 2 weeks. This setting
   # determines how long tokens will remain valid after they are issued.
@@ -35,7 +35,7 @@ DeviseTokenAuth.setup do |config|
   # Uncomment to enforce current_password param to be checked before all
   # attribute updates. Set it to :password if you want it to be checked only if
   # password is updated.
-  # config.check_current_password_before_update = :attributes
+  config.check_current_password_before_update = :password
 
   # By default we will use callbacks for single omniauth.
   # It depends on fields like email, provider and uid.
@@ -62,5 +62,22 @@ DeviseTokenAuth.setup do |config|
   # By default DeviseTokenAuth will not send confirmation email, even when including
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
-  # config.send_confirmation_email = true
+  config.send_confirmation_email = true
+
+  # # Confirm account - define route
+  # config.default_confirm_success_url = if Rails.env.production?
+  #   'https://mana-api-92b61d2011eb.herokuapp.com/api/login'
+  # else
+  #   'http://localhost:4200/login'
+  # end
+
+  # # redirect after successful apssword reset
+  # config.default_password_reset_url = if Rails.env.production?
+  #   'https://mana-api-92b61d2011eb.herokuapp.com/api/login'
+  # else
+  #   'http://localhost:4200/reset-password'
+  # end
+
+  # # after password change, all otherpages will need the login again
+  # config.remove_tokens_after_password_reset = true
 end
