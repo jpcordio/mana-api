@@ -3,8 +3,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # username: jpcordio
-  # password: Game2log.
+  username: jpcordio
+  password: Game2log.
+  url: <%= ENV['DATABASE_URL'] %>
 
 development:
   <<: *default
