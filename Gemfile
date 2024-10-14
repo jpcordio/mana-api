@@ -9,6 +9,8 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.4'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+# Rack: responsible for the communication between 2 different serves (example if the backend is on heroku adn front on the filebase)
+gem "rack-cors", "~> 2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
