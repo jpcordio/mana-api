@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   root 'application#health_check'
 
-  # match "*path", to: "application#route_not_found", via: :all
-
   namespace :api, defaults: { format: :json } do
     mount_devise_token_auth_for 'User', at: 'auth'
 
@@ -20,9 +18,3 @@ Rails.application.routes.draw do
     end
   end
 end
-
-# Example:
-# blog/api/v1/article: default = false version = 1
-# blog/api/v2/article: default = true version = 2
-
-# blog/api/articles
