@@ -1,6 +1,9 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+
+  match "*path", to: "application#route_not_found", via: :all
+
   namespace :api, defaults: { format: :json } do
     mount_devise_token_auth_for 'User', at: 'auth'
 
