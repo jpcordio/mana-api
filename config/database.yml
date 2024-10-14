@@ -1,3 +1,4 @@
+#Settings for DB
 default: &default
   adapter: postgresql
   encoding: unicode
