@@ -3,9 +3,13 @@ class ApplicationController < ActionController::API
 
         before_action :configure_permitted_parameters, if: :devise_controller?
 
-        def route_not_found
-                render json: { error: 'Not Found' }, status: :not_found
+        def health_check
+                render json: { message: 'API is running' }, status: :ok
         end
+
+        # def route_not_found
+        #         render json: { error: 'Not Found' }, status: :not_found
+        # end
 
         protected
 
