@@ -112,7 +112,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # Email
-  config.action_mailer.default_url_option = {
+  config.action_mailer.default_url_options = {
     host: 'mana-api.herokuapp.com' #backend url
   }
   config.action_mailer.delivery_method = :smtp
