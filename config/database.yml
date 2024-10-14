@@ -1,11 +1,30 @@
+# default: &default
+#   #url: <%= ENV['DATABASE_URL'] %>
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: jpcordio
+#   password: Game2log.
+#   url: <%= ENV['DATABASE_URL'] %>
+
+# development:
+#   <<: *default
+#   database: mana_api_development
+
+# test:
+#   <<: *default
+#   database: mana_api_test
+
+# production:
+#   <<: *default
+#   database: mana_api_production
+#   username: mana_api
+#   password: <%= ENV['MANA_API_DATABASE_PASSWORD'] %>
+
 default: &default
-  #url: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: jpcordio
-  password: Game2log.
-  url: <%= ENV['DATABASE_URL'] %>
 
 development:
   <<: *default
@@ -17,6 +36,4 @@ test:
 
 production:
   <<: *default
-  database: mana_api_production
-  username: mana_api
-  password: <%= ENV['MANA_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
