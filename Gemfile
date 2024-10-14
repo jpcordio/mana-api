@@ -11,13 +11,12 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 # Rack: responsible for the communication between 2 different serves (example if the backend is on heroku adn front on the filebase)
 gem "rack-cors", "~> 2.0"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+  #gem 'wdm', '>= 0.1.0' if Gem.win_platform?
   gem 'listen', '~> 3.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "letter_opener", "~> 1.10"
