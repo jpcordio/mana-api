@@ -197,7 +197,6 @@ GEM
       tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    wdm (0.2.0)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -219,7 +218,6 @@ DEPENDENCIES
   rack-cors (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.4)
   tzinfo-data
-  wdm (>= 0.1.0)
 
 RUBY VERSION
    ruby 3.2.4p170
