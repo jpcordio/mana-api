@@ -16,7 +16,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+  # gem 'wdm', '>= 0.1.0' if Gem.win_platform?
   gem 'listen', '~> 3.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "letter_opener", "~> 1.10"
