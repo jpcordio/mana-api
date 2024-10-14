@@ -2,7 +2,6 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
-
     mount_devise_token_auth_for 'User', at: 'auth'
 
     scope module: :v1,
@@ -12,7 +11,7 @@ Rails.application.routes.draw do
 
     scope module: :v2,
           constraints: ApiConstraints.new(version: 2, default: true) do
-    resources :articles
+      resources :articles
     end
   end
 end
