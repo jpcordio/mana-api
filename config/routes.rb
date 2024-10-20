@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   root 'application#health_check'
 
   namespace :api, defaults: { format: :json } do
-    mount_devise_token_auth_for 'User', at: 'auth'
+    mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+      registrations: 'overrides/registrations',
+      passwords: 'devise_token_auth/passwords'
+    }
 
     scope module: :v1,
           constraints: ApiConstraints.new(version: 1, default: false) do

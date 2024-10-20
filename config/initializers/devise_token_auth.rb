@@ -66,17 +66,18 @@ DeviseTokenAuth.setup do |config|
 
   # Confirm account - define route # URL for the frontend
   config.default_confirm_success_url = if Rails.env.production?
-    'https://localhost:4200/login'
+    'https://localhost:3001/login'
   else
-    'http://localhost:4200/login'
+    'http://localhost:3001/login'
   end
 
-  # redirect after successful apssword reset # URL for the frontend
-  config.default_password_reset_url = if Rails.env.production?
-    'https://localhost:4200/reset-password'
-  else
-    'http://localhost:4200/reset-password'
-  end
+  # redirect after successful password reset # URL for the frontend
+  config.default_password_reset_url = 'http://localhost:3001/reset-password'
+#   config.default_password_reset_url = if Rails.env.production?
+#     'https://localhost:3001/reset-password'
+#   else
+#     'http://localhost:3001/reset-password'
+#   end
 
   # after password change, all otherpages will need the login again
   config.remove_tokens_after_password_reset = true

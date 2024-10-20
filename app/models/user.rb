@@ -14,4 +14,11 @@ class User < ActiveRecord::Base
 
   has_many :articles, dependent: :destroy
 
+  validates :role, inclusion: { in: [true, false] }
+  validates :name, presence: true, unless: :resetting_password?
+
+  def resetting_password?
+    self.reset_password_token.present?
+  end
+
 end

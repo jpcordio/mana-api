@@ -113,7 +113,7 @@ Rails.application.configure do
 
   # Email
   config.action_mailer.default_url_options = {
-    host: 'mana-api-a9340512b06b.herokuapp.com/' #backend url
+    host: 'http://localhost:3000' #backend url
   }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

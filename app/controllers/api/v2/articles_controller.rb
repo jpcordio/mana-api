@@ -5,13 +5,13 @@ class Api::V2::ArticlesController < ApplicationController
   # GET /articles
   def index
     # Show article for a specific user
-    @articles = current_api_user.articles.all
+    #@articles = current_api_user.articles.all
 
     # Show article for all user, for testing enable/disable boxes of the header on Insomia
     #@articles = current_api_user.article.all
 
     # Show all articles
-    #@articles = Article.all
+    @articles = Article.all
 
     render json: @articles
   end
