@@ -2,6 +2,7 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  resources :connections
   root 'application#health_check'
 
   namespace :api, defaults: { format: :json } do
