@@ -28,7 +28,7 @@ class Api::V2::ConnectionsController < ApplicationController
         company = User.find_by(id: params[:company_id], role: true)
 
         if company.nil?
-          render json: { error: "Empresa não encontrada" }, status: :not_found
+          render json: { error: "Company not found" }, status: :not_found
           return
     end
 

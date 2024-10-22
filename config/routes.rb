@@ -33,7 +33,7 @@ Rails.application.routes.draw do
             # PATCH /connections/:id update a specific connection
 
             # Get if user follows a specific company per id
-#             get 'users/following_company/:company_id', to: 'connections#following_company', as: 'following_company'
+            get 'users/following_company/:company_id', to: 'connections#following_company', as: 'following_company'
 
             # Route for follow/unfollow companies
             resources :users do
