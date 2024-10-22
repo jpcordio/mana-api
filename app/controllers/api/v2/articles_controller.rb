@@ -25,10 +25,10 @@ class Api::V2::ArticlesController < ApplicationController
       if @articles.any?
         render json: @articles
       else
-        render json: { message: 'Nenhum artigo encontrado para este usuário' }, status: :not_found
+        render json: { message: 'There is no post for this user' }, status: :not_found
       end
       rescue => e
-        render json: { error: "Erro ao buscar artigos: #{e.message}" }, status: :internal_server_error
+        render json: { error: "Erro to load posts: #{e.message}" }, status: :internal_server_error
     end
 
   # GET /articles/1
