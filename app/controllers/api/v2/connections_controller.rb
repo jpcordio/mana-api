@@ -18,41 +18,30 @@ class Api::V2::ConnectionsController < ApplicationController
     end
   end
 
-    # GET /connections/1
-    #   def show
-    #     render json: @connection
-    #   end
+  # GET /connections/1
+  #   def show
+  #     render json: @connection
+  #   end
 
-    # Verificar se o usuário logado segue a empresa
-    def following_company
-        company = User.find_by(id: params[:company_id], role: true)
+  def following_company
+    # Check user table the user with role == true (company)
+    company = User.find_by(id: params[:company_id], role: true)
 
-        if company.nil?
-          render json: { error: "Company not found" }, status: :not_found
-          return
+    if company.nil?
+      render json: { error: "Empresa não encontrada" }, status: :not_found
+      return
     end
 
-    # Verificar se o usuário logado segue a empresa
-    connection = Connection.find_by(user_id: current_api_user.id, company_id: company.id)
+    # check the relationship on the connection
+    connection = Connection.find_by(customer_id: current_api_user.id, company_id: company.id)
 
+    # check if the relation exist
     if connection
       render json: { following: true, company: company.name }
     else
       render json: { following: false, company: company.name }
     end
   end
-
-  # POST /connections
-  # def create
-  #   company = User.find(params[:company_id])
-
-  #   if current_api_user.customer? && company.company?
-  #     current_api_user.followed_companies << company
-  #     redirect_to company_path(company), notice: "You are now following #{company.name}."
-  #   else
-  #     redirect_to root_path, alert: "You can only follow companies as a customer."
-  #   end
-  # end
 
   def create
     company = User.find(params[:company_id])
