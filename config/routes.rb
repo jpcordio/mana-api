@@ -35,6 +35,9 @@ Rails.application.routes.draw do
             # Get if user follows a specific company per id
             get 'users/following_company/:company_id', to: 'connections#following_company', as: 'following_company'
 
+            # Get all companies followed
+            get 'users/followed_companies', to: 'users#followed_companies'
+
             # Route for follow/unfollow companies
             resources :users do
               post 'follow', to: 'connections#create'

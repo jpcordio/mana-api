@@ -6,4 +6,10 @@ class Api::V2::UsersController < ApplicationController
         companies = User.where(role: true)
         render json: companies, status: :ok
       end
+
+      # Check all followed Companies
+      def followed_companies
+        followed_companies = current_api_user.companies_as_customer
+        render json: followed_companies, status: :ok
+      end
 end

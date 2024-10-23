@@ -17,10 +17,13 @@ class User < ActiveRecord::Base
   # Relationships for customers (users with role = false)
   has_many :connections_as_customer, class_name: 'Connection', foreign_key: 'customer_id'
   has_many :followed_companies, through: :connections_as_customer, source: :company
+  has_many :companies_as_customer, through: :connections_as_customer, source: :company
 
   # Relationships for companies (users with role = true)
   has_many :connections_as_company, class_name: 'Connection', foreign_key: 'company_id'
   has_many :followers, through: :connections_as_company, source: :customer
+
+
 
   # Métodos para verificar se o usuário é uma company ou um customer
   def company?
