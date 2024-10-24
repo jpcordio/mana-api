@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :connections_as_company, class_name: 'Connection', foreign_key: 'company_id'
   has_many :followers, through: :connections_as_company, source: :customer
 
-
+  has_one :company_detail, foreign_key: :company_id, dependent: :destroy
 
   # Métodos para verificar se o usuário é uma company ou um customer
   def company?

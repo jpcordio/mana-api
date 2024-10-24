@@ -38,6 +38,9 @@ Rails.application.routes.draw do
             # Get all companies followed
             get 'users/followed_companies', to: 'users#followed_companies'
 
+            # Show profile per ID
+            get 'profile/company/:user_id', to: 'profile#show_company_by_user'
+
             # Route for follow/unfollow companies
             resources :users do
               post 'follow', to: 'connections#create'
