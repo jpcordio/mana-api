@@ -23,7 +23,9 @@ class User < ActiveRecord::Base
   has_many :connections_as_company, class_name: 'Connection', foreign_key: 'company_id'
   has_many :followers, through: :connections_as_company, source: :customer
 
-  has_one :company_detail, foreign_key: :company_id, dependent: :destroy
+  #has_one :company_detail, foreign_key: :company_id, dependent: :destroy
+
+  has_one :company, foreign_key: 'company_id', primary_key: 'id', dependent: :destroy
 
   # Métodos para verificar se o usuário é uma company ou um customer
   def company?
@@ -40,6 +42,19 @@ class User < ActiveRecord::Base
 
   def resetting_password?
     self.reset_password_token.present?
+  end
+
+  before_destroy :destroy_associated_company
+
+  private
+
+  def destroy_associated_company
+    if company
+      company.destroy
+      Rails.logger.info("Company with company_id #{company.company_id} has been deleted.")
+    else
+      Rails.logger.info("No company found for user_id #{id}.")
+    end
   end
 
 end

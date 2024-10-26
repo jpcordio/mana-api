@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
    belongs_to :user, foreign_key: :company_id
+   validates :company_id, uniqueness: true
 
    # Método para buscar a companhia pelo user_id
    def self.find_by_user(user_id)

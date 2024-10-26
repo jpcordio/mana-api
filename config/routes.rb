@@ -28,9 +28,6 @@ Rails.application.routes.draw do
 
             # Routes for Connection
             resources :connections, only: [:create, :index, :update]
-            # POST /connections create connection.
-            # GET /connections list the connections (exemple, all companies followed by a customer).
-            # PATCH /connections/:id update a specific connection
 
             # Get if user follows a specific company per id
             get 'users/following_company/:company_id', to: 'connections#following_company', as: 'following_company'
@@ -39,7 +36,11 @@ Rails.application.routes.draw do
             get 'users/followed_companies', to: 'users#followed_companies'
 
             # Show profile per ID
+            # Route to edit profile
             get 'profile/company/:user_id', to: 'profile#show_company_by_user'
+            put 'profile/company/:id', to: 'profile#update_company'
+            post 'profile/company', to: 'profile#create_company'
+            resources :companies, only: [:create, :update]
 
             # Route for follow/unfollow companies
             resources :users do
