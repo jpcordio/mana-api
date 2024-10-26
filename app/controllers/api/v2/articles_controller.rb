@@ -18,22 +18,34 @@ class Api::V2::ArticlesController < ApplicationController
     render json: @articles
   end
 
-    def user_articles
-      user_id = params[:user_id]
-      @articles = Article.where(user_id: user_id)
+  def user_articles
+    user_id = params[:user_id]
+    @articles = Article.where(user_id: user_id)
 
-      if @articles.any?
-        render json: @articles
-      else
-        render json: { message: 'There is no post for this user' }, status: :not_found
-      end
-      rescue => e
-        render json: { error: "Erro to load posts: #{e.message}" }, status: :internal_server_error
+    if @articles.any?
+      render json: @articles
+    else
+      render json: { message: 'There is no post for this user' }, status: :not_found
     end
+    rescue => e
+      render json: { error: "Erro to load posts: #{e.message}" }, status: :internal_server_error
+  end
 
   # GET /articles/1
   def show
     render json: @article
+  end
+
+  # Load articles that user follows
+  def followed_articles
+    user = current_api_user
+
+    # Recupera os artigos das empresas que o usuário logado segue
+    articles = Article.joins(:user)
+                      .where(user: { id: user.followed_companies.pluck(:id) })
+                      .order(created_at: :desc)
+
+    render json: articles
   end
 
   # POST /articles

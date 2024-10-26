@@ -21,7 +21,10 @@ Rails.application.routes.draw do
 
             # New view for article per user
             get 'articles/user/:user_id', to: 'articles#user_articles'
+            # New view for articles per user that follows it
+            get 'articles/followed', to: 'articles#followed_articles'
             resources :articles
+
 
             # Route to get all companies
             get 'all_companies', to: 'users#all_companies'
