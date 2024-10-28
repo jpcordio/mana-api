@@ -20,7 +20,7 @@ class Api::V2::ArticlesController < ApplicationController
 
   def user_articles
     user_id = params[:user_id]
-    @articles = Article.where(user_id: user_id)
+    @articles = Article.where(user_id: user_id).order(created_at: :desc)
 
     if @articles.any?
       render json: @articles
